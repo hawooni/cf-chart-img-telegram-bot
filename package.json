@@ -1,0 +1,21 @@
+{
+  "name": "cf-chart-img-telegram-bot",
+  "version": "0.1.0",
+  "description": "chart-img telegram bot with serverless cloudflare workers",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "start": "wrangler dev --ip 0.0.0.0",
+    "tail": "wrangler tail --format pretty",
+    "publish": "wrangler publish",
+    "prettier": "prettier --write '**/*.{js,json,md}'"
+  },
+  "dependencies": {
+    "itty-router": "^2.6.1",
+    "qs": "^6.10.5",
+    "serverless-cloudflare-workers": "^1.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
+}

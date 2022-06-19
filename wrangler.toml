@@ -1,0 +1,12 @@
+name = "chart-img-telegram-bot"
+type = "webpack"
+
+workers_dev = true
+compatibility_date = "2022-05-13"
+
+account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
+
+[vars]
+
+CHART_IMG_API_KEY = "YOUR_CHART_IMG_API"
+TELEGRAM_API_TOKEN = "YOUR_TELEGRAM_API_TOKEN"

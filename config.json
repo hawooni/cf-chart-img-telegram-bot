@@ -1,0 +1,85 @@
+{
+  "debug": false,
+  "price": {
+    "intervals": ["1d", "1M", "3M", "1Y", "5Y", "all"],
+    "default": {
+      "symbol": "BINANCE:BTCUSDT",
+      "interval": "1M",
+      "width": 500,
+      "height": 300
+    },
+    "inputs": [
+      [
+        {
+          "text": "BTCUSD",
+          "symbol": "BITSTAMP:BTCUSD"
+        },
+        {
+          "text": "ETHUSD",
+          "symbol": "BITSTAMP:ETHUSD"
+        },
+        {
+          "text": "BNBUSD",
+          "symbol": "BNBUSD"
+        },
+        {
+          "text": "ADAUSD",
+          "symbol": "ADAUSD"
+        }
+      ],
+      [
+        {
+          "text": "AAPL",
+          "symbol": "AAPL"
+        },
+        {
+          "text": "MSFT",
+          "symbol": "MSFT"
+        },
+        {
+          "text": "AMZN",
+          "symbol": "AMZN"
+        },
+        {
+          "text": "TSLA",
+          "symbol": "TSLA"
+        }
+      ],
+      [
+        {
+          "text": "GOLD",
+          "symbol": "TVC:GOLD"
+        },
+        {
+          "text": "SILVER",
+          "symbol": "TVC:SILVER"
+        },
+        {
+          "text": "USOIL",
+          "symbol": "TVC:USOIL"
+        }
+      ],
+      [
+        {
+          "text": "USDCAD",
+          "symbol": "USDCAD"
+        },
+        {
+          "text": "EURCAD",
+          "symbol": "EURCAD"
+        },
+        {
+          "text": "KRWCAD",
+          "symbol": "KRWCAD"
+        }
+      ]
+    ]
+  },
+  "message": {
+    "start": "Hello, I am chartImgOpnBot 🤖\n\nI can grab TradingView charts in real-time as quickly as it takes you to pour a morning coffee.\n\nCommands:\n/price &lt;symbol&gt; &lt;interval&gt;\n/chart &lt;symbol&gt; [studies]\n/example\n\nDocumentation:\n<a href=\"https://doc.chart-img.com\">doc.chart-img.com</a>\n\nGitHub:\n<a href=\"https://github.com/hawooni/cf-chart-img-telegram-bot\">Source Code</a>",
+    "example": "Example:\n\n/price\n/price btcusd\n/price usdcad\n/price tsla 5Y\n/price coinbase:btcusd all\n\n/chart\n/chart ethusd\n/chart aapl ema:50;ema:200;vol\n/chart fx:usdcad vol;rsi;macd",
+    "rateLimit": "Too many request. Please try again later.",
+    "invalid": "Invalid command please try /example.",
+    "error": "Something went wrong please try again later."
+  }
+}
