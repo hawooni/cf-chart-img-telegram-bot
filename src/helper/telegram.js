@@ -80,23 +80,6 @@ export const answerCallbackQuery = (cbQueryId, optParam = {}) => {
 }
 
 /**
- * @param {Object[]} commands
- * @param {Object} optParam
- * @returns {Promise}
- */
-export const setMyCommands = (commands, optParam = {}) => {
-  const payload = {
-    commands: JSON.stringify(commands),
-  }
-
-  Object.keys(optParam).forEach((key) => {
-    payload[key] = optParam[key]
-  })
-
-  return postJsonPayload('setMyCommands', payload)
-}
-
-/**
  * @param {String} method
  * @param {FormData|String} payload
  * @param {Object|undefined} headers
