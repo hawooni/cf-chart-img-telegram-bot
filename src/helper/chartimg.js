@@ -1,4 +1,5 @@
 import qs from 'qs'
+import { authentication as AUTH } from '../../config'
 
 const BASE_URL = 'https://api.chart-img.com/v1/tradingview'
 
@@ -10,7 +11,7 @@ const getTradingViewMiniChart = (query = {}) => {
   return fetch(`${BASE_URL}/mini-chart?${qs.stringify(query)}`, {
     method: 'GET',
     headers: {
-      authorization: `Bearer ${CHART_IMG_API_KEY}`,
+      authorization: `Bearer ${AUTH.chartImgApiKey}`,
     },
   })
 }
@@ -23,7 +24,7 @@ const getTradingViewAdvancedChart = (query = {}) => {
   return fetch(`${BASE_URL}/advanced-chart?${qs.stringify(query, { arrayFormat: 'repeat' })}`, {
     method: 'GET',
     headers: {
-      authorization: `Bearer ${CHART_IMG_API_KEY}`,
+      authorization: `Bearer ${AUTH.chartImgApiKey}`,
     },
   })
 }

@@ -1,3 +1,5 @@
+import { authentication as AUTH } from '../../config'
+
 export const sendPhoto = (payload) => postPayload('sendPhoto', payload)
 export const sendMessage = (payload) => postJsonPayload('sendMessage', payload)
 
@@ -101,7 +103,7 @@ export const setMyCommands = (commands, optParam = {}) => {
  * @returns {Promise}
  */
 function postPayload(method, payload, headers) {
-  return fetch(`https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/${method}`, {
+  return fetch(`https://api.telegram.org/bot${AUTH.telegramApiToken}/${method}`, {
     method: 'POST',
     body: payload,
     headers: headers,
