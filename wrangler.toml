@@ -1,7 +1,6 @@
 name = "chart-img-telegram-bot"
-type = "webpack"
 
-workers_dev = true
-compatibility_date = "2022-05-13"
+main = "src/index.js"
+compatibility_date = "2022-06-21"
 
 account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
