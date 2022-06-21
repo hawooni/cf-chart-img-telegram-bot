@@ -29,7 +29,7 @@ export default (payload) => {
     if (message) {
       const { chat, text } = message
 
-      if (chat.type === 'private') {
+      if (chat.type === 'private' && text) {
         debug && console.debug(`:: debug :: process private chat ${chat.first_name} text`)
         return procCommand(chat.id, text, true)
       } else if (chat.type === 'group' && text) {
@@ -56,8 +56,11 @@ export default (payload) => {
       }
     } else if (channel_post) {
       const { chat, text } = channel_post
-      debug && console.debug(`:: debug :: process channel ${chat.title} chat text`)
-      return procCommand(chat.id, text)
+
+      if (text) {
+        debug && console.debug(`:: debug :: process channel ${chat.title} chat text`)
+        return procCommand(chat.id, text)
+      }
     } else if (callback_query) {
       return procCallbackQuery(callback_query)
     }
@@ -265,18 +268,18 @@ async function sendMessageExample(chatId) {
  * @returns {Promise}
  */
 function sendMessageError(chatId, status, payload = null) {
-  console.error(`sendMessageError(${chatId}, ${status}`)
+  console.error(`sendMessageError(${chatId}, ${status})`)
   payload && console.error(JSON.stringify(payload))
 
   if (status === 422) {
     return sendMessage({
       chat_id: chatId,
-      text: payload.error || MESSAGE.invalid,
+      text: (payload && payload.error) || MESSAGE.invalid,
     })
   } else if (status === 429) {
     return sendMessage({
       chat_id: chatId,
-      text: payload.error || MESSAGE.rateLimit,
+      text: (payload && payload.error) || MESSAGE.rateLimit,
     })
   } else {
     return sendMessage({
