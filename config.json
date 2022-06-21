@@ -5,6 +5,7 @@
     "default": {
       "symbol": "BINANCE:BTCUSDT",
       "interval": "1M",
+      "theme": "dark",
       "width": 500,
       "height": 300
     },
@@ -75,9 +76,101 @@
       ]
     ]
   },
+  "chart": {
+    "intervals": ["5m", "15m", "1h", "4h", "1d", "1w"],
+    "default": {
+      "symbol": "BTCUSDT",
+      "interval": "1d",
+      "theme": "dark",
+      "studies": ["EMA:50", "EMA:200", "VOL", "RSI"],
+      "timezone": "Etc/UTC",
+      "width": 800,
+      "height": 600
+    },
+    "inputs": [
+      [
+        {
+          "text": "BTCUSDT",
+          "symbol": "BINANCE:BTCUSDT",
+          "style": "area"
+        },
+        {
+          "text": "ETHUSDT",
+          "symbol": "BINANCE:ETHUSDT",
+          "style": "hollowCandle",
+          "studies": ["VOL", "MACD"]
+        },
+        {
+          "text": "BNBUSDT",
+          "symbol": "BINANCE:BNBUSDT",
+          "studies": ["EMA:50", "EMA:200", "VOL", "CCI"]
+        },
+        {
+          "text": "ADAUSDT",
+          "symbol": "BINANCE:ADAUSDT",
+          "studies": ["IC", "VOL", "MFI"]
+        }
+      ],
+      [
+        {
+          "text": "XRPUSDT",
+          "symbol": "BINANCE:XRPUSDT"
+        },
+        {
+          "text": "SOLUSDT",
+          "symbol": "BINANCE:SOLUSDT"
+        },
+        {
+          "text": "DOTUSDT",
+          "symbol": "BINANCE:DOTUSDT"
+        },
+        {
+          "text": "DOGEUSDT",
+          "symbol": "BINANCE:DOGEUSDT"
+        }
+      ],
+      [
+        {
+          "text": "TRXUSDT",
+          "symbol": "BINANCE:TRXUSDT"
+        },
+        {
+          "text": "SHIBUSDT",
+          "symbol": "BINANCE:SHIBUSDT"
+        },
+        {
+          "text": "AVAXUSDT",
+          "symbol": "BINANCE:AVAXUSDT"
+        },
+        {
+          "text": "LTCUSDT",
+          "symbol": "BINANCE:LTCUSDT"
+        }
+      ],
+      [
+        {
+          "text": "AAPL",
+          "symbol": "AAPL",
+          "studies": ["EMA:50", "EMA:200", "VOL", "MACD"]
+        },
+        {
+          "text": "MSFT",
+          "symbol": "MSFT"
+        },
+        {
+          "text": "AMZN",
+          "symbol": "AMZN"
+        },
+        {
+          "text": "TSLA",
+          "symbol": "TSLA"
+        }
+      ]
+    ]
+  },
   "message": {
-    "start": "Hello, I am chartImgOpnBot 🤖\n\nI can grab TradingView charts in real-time as quickly as it takes you to pour a morning coffee.\n\nCommands:\n/price &lt;symbol&gt; &lt;interval&gt;\n/chart &lt;symbol&gt; [studies]\n/example\n\nDocumentation:\n<a href=\"https://doc.chart-img.com\">doc.chart-img.com</a>\n\nGitHub:\n<a href=\"https://github.com/hawooni/cf-chart-img-telegram-bot\">Source Code</a>",
-    "example": "Example:\n\n/price\n/price btcusd\n/price usdcad\n/price tsla 5Y\n/price coinbase:btcusd all\n\n/chart\n/chart ethusd\n/chart aapl ema:50;ema:200;vol\n/chart fx:usdcad vol;rsi;macd",
+    "start": "Hello, I am chartImgOpnBot 🤖\n\nI can grab TradingView charts in real-time as quickly as it takes you to pour a morning coffee.\n\nCommands:\n/price &lt;symbol&gt; &lt;interval&gt;\n/chart &lt;symbol&gt; &lt;interval&gt; [studies] &lt;style&gt;\n/example\n\nDocumentation:\n<a href=\"https://doc.chart-img.com\">doc.chart-img.com</a>\n\nGitHub:\n<a href=\"https://github.com/hawooni/cf-chart-img-telegram-bot\">Source Code</a>",
+    "example": "Example:\n\n/price\n/price btcusd\n/price tsla 5Y\n/price coinbase:btcusd all\n\n/chart\n/chart ethusd\n/chart aapl 4h ema:50;ema:200;vol\n/chart fx:usdcad 4h vol;rsi;macd area",
     "rateLimit": "Too many request. Please try again later.",
     "invalid": "Invalid command please try /example.",
     "error": "Something went wrong please try again later."
