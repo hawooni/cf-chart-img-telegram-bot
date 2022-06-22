@@ -17,7 +17,7 @@ const CB_TYPE_CHART = 'C'
 const CB_TYPE_CHART_SYMBOLS = 'CS'
 
 const CB_DATA_TIMESTAMP_SLICE = -4 // cut to last 4 digit to reduce the data length and unique
-const STUDIES_SEPARATOR = ';' // eg. RSI;MACD;EMA:200
+const CHART_STUDIES_SEPARATOR = ';' // eg. RSI;MACD;EMA:200
 
 /**
  * Telegram webhook payload
@@ -188,10 +188,15 @@ async function sendPhotoChart(chatId, query = {}, includeMarkupSymbols = false) 
  * @returns {Promise}
  */
 async function sendPhoto(chatId, attachPhoto, caption, relayMarkup = null) {
-  const resSend = await sendAttachPhoto(chatId, attachPhoto, {
-    reply_markup: JSON.stringify(relayMarkup),
+  const param = {
     caption: caption,
-  })
+  }
+
+  if (relayMarkup) {
+    param.reply_markup = JSON.stringify(relayMarkup)
+  }
+
+  const resSend = await sendAttachPhoto(chatId, attachPhoto, param)
 
   if (resSend.status !== 200) {
     return sendMessageError(chatId, resSend.status, await resSend.json())
@@ -207,18 +212,18 @@ async function sendPhoto(chatId, attachPhoto, caption, relayMarkup = null) {
  * @return {Promise}
  */
 async function sendPhotoCallback(chatId, msgId, attachPhoto, caption, relayMarkup = null) {
-  const resEdit = await editAttachMessageMedia(
-    'photo',
-    attachPhoto,
-    {
-      chat_id: chatId,
-      message_id: msgId,
-      reply_markup: JSON.stringify(relayMarkup),
-    },
-    {
-      caption: caption,
-    }
-  )
+  const param = {
+    chat_id: chatId,
+    message_id: msgId,
+  }
+
+  if (relayMarkup) {
+    param.reply_markup = JSON.stringify(relayMarkup)
+  }
+
+  const resEdit = await editAttachMessageMedia('photo', attachPhoto, param, {
+    caption: caption,
+  })
 
   if (resEdit.status !== 200) {
     return sendMessageError(chatId, resEdit.status, await resEdit.json())
@@ -325,7 +330,7 @@ function getChartQueryByText(text) {
     textQuery.interval = interval
   }
   if (studies) {
-    textQuery.studies = studies.split(STUDIES_SEPARATOR).map((study) => study.toUpperCase())
+    textQuery.studies = studies.split(CHART_STUDIES_SEPARATOR).map((study) => study.toUpperCase())
   }
   if (style) {
     textQuery.style = style
@@ -361,7 +366,7 @@ function getChartQueryByCallbackData(data) {
         symbol: symbol,
         interval: interval,
       },
-      studies ? { studies: studies.split(STUDIES_SEPARATOR) } : null,
+      studies ? { studies: studies.split(CHART_STUDIES_SEPARATOR) } : null,
       style ? { style: style } : null
     )
   )
@@ -401,7 +406,7 @@ function getSendPhotoPriceCaption(query) {
  */
 function getSendPhotoChartCaption(query) {
   const { symbol, interval, studies, style } = query
-  return `${symbol.toUpperCase()} ${interval} ${studies ? studies.join(STUDIES_SEPARATOR) : ''} ${style || ''}`
+  return `${symbol.toUpperCase()} ${interval} ${studies ? studies.join(CHART_STUDIES_SEPARATOR) : ''} ${style || ''}`
 }
 
 /**
@@ -452,7 +457,7 @@ function getSendPhotoChartRelayMarkup(query, includeSymbols = false) {
   const intervals = CHART.intervals.map((interval) => {
     return {
       text: interval,
-      callback_data: `${cbType}|${qSymbol}|${interval}|${qStudies ? qStudies.join(STUDIES_SEPARATOR) : ''}|${qStyle || ''}|${String(Date.now()).slice(CB_DATA_TIMESTAMP_SLICE)}`, // prettier-ignore
+      callback_data: `${cbType}|${qSymbol}|${interval}|${qStudies ? qStudies.join(CHART_STUDIES_SEPARATOR) : ''}|${qStyle || ''}|${String(Date.now()).slice(CB_DATA_TIMESTAMP_SLICE)}`, // prettier-ignore
     }
   })
 
@@ -462,7 +467,7 @@ function getSendPhotoChartRelayMarkup(query, includeSymbols = false) {
         const { symbol: sqSymbol, studies: sqStudies, style: sqStyle } = sQuery
         return {
           text: sQuery.text,
-          callback_data: `${cbType}|${sqSymbol}|${qInterval}|${sqStudies ? sqStudies.join(STUDIES_SEPARATOR) : ''}|${sqStyle || ''}|${String(Date.now()).slice(CB_DATA_TIMESTAMP_SLICE)}`, // prettier-ignore
+          callback_data: `${cbType}|${sqSymbol}|${qInterval}|${sqStudies ? sqStudies.join(CHART_STUDIES_SEPARATOR) : ''}|${sqStyle || ''}|${String(Date.now()).slice(CB_DATA_TIMESTAMP_SLICE)}`, // prettier-ignore
         }
       })
     )
