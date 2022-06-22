@@ -2,5 +2,3 @@ name = "chart-img-telegram-bot"
 
 main = "src/index.js"
 compatibility_date = "2022-06-21"
-
-account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"

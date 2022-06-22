@@ -10,7 +10,7 @@ You are welcome to use this bot if you don't want to customize your own. It will
 
 ## Requirement
 
-- [Cloudflare](https://workers.cloudflare.com) Account ID
+- [Cloudflare](https://workers.cloudflare.com) Account
 - [CHART-IMG](https://chart-img.com) API Key
 - [Telegram](https://core.telegram.org/bots) API Token
 
@@ -21,20 +21,11 @@ You are welcome to use this bot if you don't want to customize your own. It will
 To install [wrangler](https://github.com/cloudflare/wrangler2), ensure you have [npm](https://docs.npmjs.com/getting-started) installed, preferably using a Node version manager like [Volta](https://volta.sh) or [nvm](https://github.com/nvm-sh/nvm) to avoid permission issues or to easily change Node.js versions, then run:
 
 ```
-npm install -g wrangler
+$ npm install -g wrangler
 ```
 
-#### wrangler.toml
-
-Setup the Cloudflare account ID value `account_id`.
-
 ```
-name = "chart-img-telegram-bot"
-
-main = "src/index.js"
-compatibility_date = "2022-06-21"
-
-account_id = "YOUR_CF_ACCOUNT_ID_HERE"
+$ wrangler login
 ```
 
 #### config.json
