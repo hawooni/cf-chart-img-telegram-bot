@@ -16,7 +16,7 @@ You are welcome to use this bot if you don't want to customize your own. It will
 
 ## Setup
 
-### Installing the Workers CLI
+### Wrangler Install & Login
 
 To install [wrangler](https://github.com/cloudflare/wrangler2), ensure you have [npm](https://docs.npmjs.com/getting-started) installed, preferably using a Node version manager like [Volta](https://volta.sh) or [nvm](https://github.com/nvm-sh/nvm) to avoid permission issues or to easily change Node.js versions, then run:
 
@@ -28,7 +28,7 @@ $ npm install -g wrangler
 $ wrangler login
 ```
 
-#### config.json
+### config.json
 
 Setup the authentication value `chartImgApiKey` and `telegramApiToken`.
 
@@ -44,10 +44,10 @@ Setup the authentication value `chartImgApiKey` and `telegramApiToken`.
 
 ## Deploy
 
-After you publish your worker, `npm run publish`; you have to set up the Telegram webhook URL by running the command `npm run setup`, then enter the published domain name.
+After you publish your worker, `wrangler publish`; you have to set up the Telegram webhook URL by running the command `npm run setup`, then enter the published domain name.
 
 ```
-$ npm run publish
+$ wrangler publish
 
 > cf-chart-img-telegram-bot@0.1.0 publish
 > wrangler publish
@@ -56,14 +56,14 @@ $ npm run publish
 --------------------
 Uploaded chart-img-telegram-bot (0.80 sec)
 Published chart-img-telegram-bot (3.33 sec)
-  chart-img-telegram-bot.YOUR_ID_HERE.workers.dev
+  chart-img-telegram-bot.YOUR_ID.workers.dev
 
 $ npm run setup
 
 > cf-chart-img-telegram-bot@0.1.0 setup
 > node setup/telegram.js
 
-Enter published domain name: chart-img-telegram-bot.YOUR_ID_HERE.workers.dev
+? Enter published domain name : chart-img-telegram-bot.YOUR_ID.workers.dev
 ```
 
 ## Commands
