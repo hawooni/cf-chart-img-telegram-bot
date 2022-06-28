@@ -7,7 +7,7 @@ const BASE_URL = 'https://api.chart-img.com/v1/tradingview'
  * @param {Object} query
  * @returns {Promise}
  */
-const getTradingViewMiniChart = (query = {}) => {
+export const getTradingViewMiniChart = (query = {}) => {
   return fetch(`${BASE_URL}/mini-chart?${qs.stringify(query)}`, {
     method: 'GET',
     headers: {
@@ -20,7 +20,7 @@ const getTradingViewMiniChart = (query = {}) => {
  * @param {Object} query
  * @returns {Promise}
  */
-const getTradingViewAdvancedChart = (query = {}) => {
+export const getTradingViewAdvancedChart = (query = {}) => {
   return fetch(`${BASE_URL}/advanced-chart?${qs.stringify(query, { arrayFormat: 'repeat' })}`, {
     method: 'GET',
     headers: {
@@ -28,5 +28,3 @@ const getTradingViewAdvancedChart = (query = {}) => {
     },
   })
 }
-
-export { getTradingViewMiniChart, getTradingViewAdvancedChart }

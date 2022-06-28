@@ -4,7 +4,7 @@
  * @param {Object} headers
  * @returns {Response}
  */
-const resJson = (payload, status = 200, headers = {}) => {
+export const resJson = (payload, status = 200, headers = {}) => {
   const body = JSON.stringify(payload)
 
   return new Response(body, {
@@ -17,5 +17,3 @@ const resJson = (payload, status = 200, headers = {}) => {
     status: status,
   })
 }
-
-export { resJson }
