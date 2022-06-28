@@ -1,22 +1,30 @@
-const axios = require('axios')
-const { authentication: AUTH, commands } = require('../config')
+import axios from 'axios'
+import inquirer from 'inquirer'
+import config from '../config.json' assert { type: 'json' }
 
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout,
-})
+const { authentication: AUTH, commands } = config
 
-readline.question('Enter published domain name: ', (domain) => {
-  readline.close()
-  Promise.all([
-    postTelegramAPI('setWebhook', {
-      url: `https://${domain}/webhook/telegram`,
-    }),
-    postTelegramAPI('setMyCommands', { commands: commands }),
-  ]).catch((error) => {
-    console.error(error.response?.data?.description || 'Something went wrong.')
+console.log('\n')
+
+inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'domain',
+      message: `Enter published domain name :`,
+    },
+  ])
+  .then((answer) => {
+    return Promise.all([
+      postTelegramAPI('setWebhook', {
+        url: `https://${answer.domain}/webhook/telegram`,
+      }),
+      postTelegramAPI('setMyCommands', { commands: commands }),
+    ])
   })
-})
+  .catch((error) => {
+    console.error(error.response?.data?.description || error.message || error)
+  })
 
 /**
  * @param {String} method
