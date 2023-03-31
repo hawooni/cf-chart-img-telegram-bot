@@ -1,3 +1,5 @@
+# Please refer to the new project [chart-img-telegram-bot](https://github.com/hawooni/chart-img-telegram-bot) that supports API versions 1 and 2 and will be actively maintained.
+
 # CHART-IMG TELEGRAM BOT
 
 It is a simple Telegram bot based on [CHART-IMG](https://doc.chart-img.com) API with serverless Cloudflare Workers. It supports all public TradingView symbols, and the preset symbols can be customized by modifying the file `config.json`.
